@@ -70,9 +70,13 @@ input[type="text"]:focus {
     margin-top: 20px;
 }
 
+.pinStyle {
+    border: 3px solid red; 
+}
+
 .todo p {
     cursor: pointer;
-    padding-right: 40px;
+    padding: 0px 40px 0px 20px;
     user-select: none;
 }
 
@@ -92,6 +96,11 @@ input[type="text"]:focus {
     user-select: none;
 }
 
+h2 {
+    display: none;
+    text-align: center;
+}
+
 h3 {
     text-align: center;
     cursor: pointer;
@@ -104,9 +113,4 @@ h3:hover {
 
 .showCompletedStyle {
     display: none;
-}
-
-h2 {
-    display: none;
-    text-align: center;
 }

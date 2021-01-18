@@ -13,8 +13,9 @@ function addTodo (e) {
     e.preventDefault();
     const html = `  <li>
                         <div class="todo">
+                            <img class="pin" src="images/push-pin.png" alt="pin">
                             <p>${form.todo.value}</p>
-                            <img src="images/remove.png" alt="remove">
+                            <img class="remove" src="images/remove.png" alt="remove">
                         </div>
                     </li>`
     listTodosUL.innerHTML += html;
@@ -28,9 +29,11 @@ function addTodo (e) {
 listTodosUL.addEventListener('click', removeTodo);
 
 function removeTodo (e) {
-    if(e.target.tagName === 'IMG') {
+    if(e.target.tagName === 'IMG' && e.target.classList[0] === 'remove') {
         e.target.parentElement.parentElement.remove();
         completed.push(e.target.previousElementSibling);
+    } else if(e.target.tagName === 'IMG' && e.target.classList[0] === 'pin') {
+        e.target.parentElement.classList.toggle("pinStyle");
     }
     const array = Array.from(listTodosUL.children);
     if(array.length == 0) {
@@ -44,17 +47,17 @@ function removeTodo (e) {
 
 showCompletedH3.addEventListener('click', showCompletedTodos);
 
-function showCompletedTodos() {
+function showCompletedTodos(e) {
+    e.preventDefault();
     showCompletedUL.classList.toggle("showCompletedStyle");
     let html = ``;
     for(let i=completed.length-1; i>=0; i--) {
         html += `  <li>
                         <div class="todo">
                             <p>${completed[i].textContent}</p>
-                            <img src="images/check.png" alt="checkmark">
+                            <img src="images/check.png" alt="remove">
                         </div>
                     </li>`
     }
     showCompletedUL.innerHTML = html;
-    
 }
