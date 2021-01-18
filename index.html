@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo App</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Todo App</h1>
+        <form>
+            <input type="text" name="todo" placeholder="New Task" required>
+            <button class="submit" type="submit">Add</button>
+        </form>
+        <div class="listTodos">
+            <ul>
+                <li>
+                    <div class="todo">
+                        <p>Learn React JS</p>
+                        <img src="images/remove.png" alt="remove">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h2>You have completed all your Todos, yayyyy!!!</h2>
+        <div class="showCompleted">
+            <h3>Show Completed Todos</h3>
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
