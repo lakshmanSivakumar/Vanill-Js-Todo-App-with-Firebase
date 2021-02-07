@@ -17,15 +17,20 @@ menu.addEventListener('click', filterTodos);
 //filter todos
 function filterTodos(e) {
     if(e.target.textContent === 'Completed Todos') {
-        const allLi = document.querySelectorAll('li');
         let html = '';
         db.collection('todos').where('check', '==', 1).get().then(snapshot => {
             snapshot.docs.forEach(doc => {
-                allLi.forEach(li => {
-                    if(li.getAttribute('data-id') === doc.id) {
-                        html += li.outerHTML;
-                    }
-                })
+                html += `<li class="todo" data-id=${doc.id}>
+                            <div class="todoContent">
+                                <p class="lineThrough">${doc.data().todo}</p>
+                                <p>Created at - ${doc.data().created_at}</p>
+                            </div>
+                            <div class="icons">
+                                <img src="./images/trash.png" alt="trash">
+                                <img src="./images/edit.png" alt="edit">
+                                <img src="./images/check-mark.png" alt="check/uncheck">
+                            </div>
+                        </li>`
             });
             ul.innerHTML = html;
         }).catch( err => {
@@ -33,15 +38,20 @@ function filterTodos(e) {
         });    
     }
     else if(e.target.textContent === 'Incomplete Todos') {
-        const allLi = document.querySelectorAll('li');
         let html = '';
         db.collection('todos').where('check', '==', 0).get().then(snapshot => {
             snapshot.docs.forEach(doc => {
-                allLi.forEach(li => {
-                    if(li.getAttribute('data-id') === doc.id) {
-                        html += li.outerHTML;
-                    }
-                })
+               html += `<li class="todo" data-id=${doc.id}>
+                            <div class="todoContent">
+                                <p>${doc.data().todo}</p>
+                                <p>Created at - ${doc.data().created_at}</p>
+                            </div>
+                            <div class="icons">
+                                <img src="./images/trash.png" alt="trash">
+                                <img src="./images/edit.png" alt="edit">
+                                <img src="./images/uncheck-mark.png" alt="check/uncheck">
+                            </div>
+                        </li>`
             });
             ul.innerHTML = html;
         }).catch( err => {
