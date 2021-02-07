@@ -1,116 +1,201 @@
 * {
     box-sizing: border-box;
-    font-family: 'Comfortaa', cursive;
-    list-style-type: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    margin: 0;
     padding: 0;
 }
 
-p {
-    margin: 0;
+header {
+    background-color: #f6f6f6;
 }
 
-.wrapper {
+nav {
     display: flex;
-    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
-h1 {
+.menuIcon {
+    cursor: pointer;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    background-color: #f6f6f6;
+    display: none;
+    padding-top: 40px;
+    flex-flow: column wrap;
+    animation: slide 0.3s ease-in-out forwards;
+}
+
+@keyframes slide {
+    from {left: -50%;}
+    to {left: 0%;}
+}
+
+.menu a {
+    width: fit-content;
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px solid #f6f6f6;
+    margin: 10px 0px 10px 40px;
+}
+
+.menu a:hover {
+    border-bottom: 2px solid black;
+}
+
+.addForm {
+    margin: 20px 0px;
     text-align: center;
 }
 
-form {
-    display: flex;
-    justify-content: center;
-}
-
-input[type="text"] {
+.addTodoInput {
     outline: none;
-    margin-right: 20px;
-    height: 40px;
-    width: 50%;
     padding: 10px 20px;
-    border: 3px solid #f1f1f1;
-    border-radius: 3px;
-    font-size: 1.1em;
-    transition: 0.3s ease;
+    font-size: 1.2em;
+    border: 2px solid black;
 }
 
-input[type="text"]:focus {
-    border: 3px solid lightblue;
-}
-
-.submit {
+.addSubmit {
+    padding: 10px 20px;
     cursor: pointer;
-    outline: none;
-    height: 40px;
-    padding: 0px 10px;
-    font-size: 1.1em;
-    border: 3px solid #f1f1f1;
-    border-radius: 3px;
-    transition: 0.3s ease-in-out;
-    font-weight: 500;
+    font-size: 1.2em;
+    border: 2px solid black;
 }
 
-.submit:hover {
-    border: 3px solid lightblue;
-}
-
-.listTodos {
-    border-radius: 3px;
-    width: fit-content;
-    margin: 0 auto;
+.wrapper {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    padding: 20px;
+    list-style-type: none;
 }
 
 .todo {
-    border: 3px solid #f1f1f1;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    margin-top: 20px;
+    align-items: center;    
+    transition: 0.3s ease-in-out;
 }
 
-.pinStyle {
-    border: 3px solid red; 
+.todo:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.todo p {
-    cursor: pointer;
-    padding: 0px 40px 0px 20px;
-    user-select: none;
-}
-
-.todo img {
-    cursor: pointer;
+.todoContent {
+    font-size: 1.2em;
 }
 
 .lineThrough {
     text-decoration: line-through;
     opacity: 0.5;
-    outline-style:none;
 }
 
-.showCompleted {
-    width: fit-content;
-    margin: 60px auto 0px auto;
-    user-select: none;
+.icons {
+    display: flex;
+    flex-flow: column wrap;
 }
 
-h2 {
-    display: none;
-    text-align: center;
-}
-
-h3 {
-    text-align: center;
-    cursor: pointer;
+.icons img {
+    padding: 10px;
     transition: 0.3s ease-in-out;
 }
 
-h3:hover {
-    color: lightskyblue;
+.icons img:hover {
+    background-color: #f1f1f1;
 }
 
-.showCompletedStyle {
+.icons img:nth-child(-n+2) {
+    margin-bottom: 20px;
+}
+
+.editPopUp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
     display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.editFormDiv {
+    width: fit-content;
+    padding: 40px;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    position: relative;
+}
+
+.editFormDiv img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.editTodoInput {
+    outline: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: 2px solid black;
+}
+
+.editSubmit {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: 2px solid black;
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    
+    .menuIcon {
+        display: none;
+    }    
+
+    .menu {
+        position: static;
+        width: fit-content;
+        display: flex;
+        flex-flow: row wrap;
+        padding-top: 0px;
+    }
+
+    .menu a {
+        margin: 0px 20px;
+    }
+
+     .wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
 }

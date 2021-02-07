@@ -2,37 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <title>Todo App</title>
 </head>
 <body>
-    <div class="wrapper">
-        <h1>Todo App</h1>
-        <form>
-            <input type="text" name="todo" placeholder="New Task" required>
-            <button class="submit" type="submit">Add</button>
-        </form>
-        <div class="listTodos">
-            <ul>
-                <li>
-                    <div class="todo">
-                        <img class="pin" src="images/push-pin.png" alt="pin">
-                        <p>Learn React JS</p>
-                        <img class="remove" src="images/remove.png" alt="remove">
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <h2>You have completed all your Todos, yayyyy!!!</h2>
-        <div class="showCompleted">
-            <h3>Show Completed Todos</h3>
-            <ul class="showCompletedStyle">
-            </ul>
+    <header>
+        <nav>
+            <h1>Todo App</h1>
+            <img class="menuIcon" onclick="slide()" src="./images/hamburger.png" alt="menuIcon">
+            <div class="menu">
+                <a href="#">All Todos</a>
+                <a href="#">Completed Todos</a>
+                <a href="#">Incomplete Todos</a>
+                <a href="#">Today's Todos</a>
+                <a href="#">Login</a>
+            </div>
+        </nav>
+    </header>
+    <form class="addForm">
+        <h2>Add Todo</h2>
+        <input class="addTodoInput" type="text" name="newTodo" placeholder="Enter a Todo" required>
+        <input class="addSubmit" type="submit" value="Add">
+    </form>
+    <ul class="wrapper">
+    </ul>
+
+    <div class="editPopUp">
+        <div class="editFormDiv">
+            <h2>Edit Todo</h2>
+            <img src="./images/remove.png" alt="remove">
+            <form class="editForm">
+                <input class="editTodoInput" type="text" name="editTodo" required>
+                <input class="editSubmit" type="submit" value="Edit">
+            </form>
         </div>
     </div>
-    <script src="app.js"></script>
+   
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyA-wPnxXtJD0JmniQVGuQKbtJTN_UH52W4",
+            authDomain: "todo-app-ebee8.firebaseapp.com",
+            projectId: "todo-app-ebee8",
+            storageBucket: "todo-app-ebee8.appspot.com",
+            messagingSenderId: "43366151448",
+            appId: "1:43366151448:web:921b876aac67f95ce5da6d",
+            measurementId: "G-XDGS9CRV4Z"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const db = firebase.firestore();
+    </script>
+    <script src="./app.js"></script>
 </body>
 </html>
